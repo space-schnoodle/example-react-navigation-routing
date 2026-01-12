@@ -1,18 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 import Panel from './Panel';
 
 function DropDown({ options, value, onChange }) {
     const [isOpen, setIsOpen] = useState(false);
+    const divElement = useRef();
+
+    useEffect(() => {
+        const handler = (event) => {
+            if (!divElement.current) {
+                return;
+            }
+
+            //if this is false the user clicked outside the dropdown
+            if (!divElement.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        // use the capture phase, third parameter must be true
+        document.addEventListener('click', handler, true);
+
+        // clean up function
+        return () => {
+            document.removeEventListener('click', handler);
+        }
+    }, []);
 
     const handleClick = () => {
         setIsOpen((currentIsOpen) => !currentIsOpen);
     };
 
     const handleOptionClick = (option) => {
-        // CLOSE DROPDOWN
+        // close dropdown
         setIsOpen(false);
-        // WHAT THE OPTION DID THE USER CLICK
+        // what option did the user click
         onChange(option);
     };
 
@@ -25,7 +47,7 @@ function DropDown({ options, value, onChange }) {
     });
 
     return (
-        <div className='w-48 relative'>
+        <div ref={divElement} className='w-48 relative'>
             <Panel 
                 className='flex justify-between items-center cursor-pointer'
                 onClick={handleClick}

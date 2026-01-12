@@ -15,7 +15,7 @@ function App() {
   ];
 
   return (
-    <div>
+    <div className='flex'>
       <DropDown 
         options={options} 
         value={selection} 
