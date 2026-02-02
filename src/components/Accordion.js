@@ -43,7 +43,7 @@ function Accordion({ items }) {
     });
 
     return (
-        <div className='border-x border-t rounded'>
+        <div className='border-gray-200 border-x border-t rounded'>
             {renderedItems}
         </div>
     );
