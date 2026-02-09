@@ -11,4 +11,8 @@ For styling this example will use:
     [classnames](https://www.npmjs.com/package/classnames)   
     [tailwind-merge](https://www.npmjs.com/package/tailwind-merge)    
     [react-icons](https://www.npmjs.com/package/react-icons)  
+
+## Note
+
+This example is focus on react, so some CSS rules are absent, just the bare minimun of CSS is coded. 
     
